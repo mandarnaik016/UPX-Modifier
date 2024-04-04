@@ -1,0 +1,79 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "pyenv set global",
+      "type": "shell",
+      "command": "pyenv",
+      "args": ["global", "3.11.7"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": true
+      }
+    },
+    {
+      "label": "build exe",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "nuitka",
+        "--standalone",
+        "--windows-icon-from-ico=icon.ico",
+        "upx.py"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": true
+      },
+      "dependsOn": ["pyenv set global"]
+    },
+    {
+      "label": "compress upx.exe",
+      "type": "shell",
+      "command": "upx",
+      "args": ["--ultra-brute", "./upx.dist/upx.exe"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": true
+      },
+      "dependsOn": ["build exe"]
+    },
+    {
+      "label": "compress libcrypto",
+      "type": "shell",
+      "command": "upx",
+      "args": ["--ultra-brute", "./upx.dist/libcrypto-3.dll"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": true
+      },
+      "dependsOn": ["compress upx.exe"]
+    },
+    {
+      "label": "compress python311",
+      "type": "shell",
+      "command": "upx",
+      "args": ["--ultra-brute", "./upx.dist/python311.dll"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": true
+      },
+      "dependsOn": ["compress libcrypto"]
+    },
+    {
+      "label": "build project",
+      "dependsOn": ["compress python311"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "close": true
+      }
+    }
+  ]
+}
