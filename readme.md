@@ -1,6 +1,6 @@
-![Logo](https://raw.githubusercontent.com/mandarnaik016/UPX-Modifier/main/favicon.ico)
+<p align="center"><a href="favicon.ico"><img src="favicon.ico" alt="UPX modifier"/></a></p>
 
-# UPX Modifier
+<h1 align="center">UPX Modifier</h1>
 
 Yet another project to modify headers of file compressed with UPX just to disable the decompression via **-d** command.
 
@@ -24,15 +24,15 @@ upx.exe calc.exe calc.modified.exe
 
 ## Demo
 
-![upx-cannot-decompress](image)
+![upx cannot decompress](data/upx-cannot-decompress.png)
 
 A calc.exe compressed with UPX typically in a HEX editor.
 
-![calc upx compressed](image)
+![calc upx compressed](data/calc-upx-compressed.png)
 
 Whereas after running UPX modifier,
 
-![comparison-between-upx-packed](image)
+![comparison between upx packed](data/comparison-between-upx-packed.png)
 
 ## Author
 
