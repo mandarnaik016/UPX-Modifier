@@ -19,8 +19,8 @@
       "args": [
         "-m",
         "nuitka",
-        "--standalone",
-        "--windows-icon-from-ico=icon.ico",
+        "--onefile",
+        "--windows-icon-from-ico=favicon.ico",
         "upx.py"
       ],
       "presentation": {
@@ -34,7 +34,7 @@
       "label": "compress upx.exe",
       "type": "shell",
       "command": "upx",
-      "args": ["--ultra-brute", "./upx.dist/upx.exe"],
+      "args": ["--ultra-brute", "./upx.exe"],
       "presentation": {
         "reveal": "always",
         "panel": "new",
@@ -43,32 +43,8 @@
       "dependsOn": ["build exe"]
     },
     {
-      "label": "compress libcrypto",
-      "type": "shell",
-      "command": "upx",
-      "args": ["--ultra-brute", "./upx.dist/libcrypto-3.dll"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "new",
-        "close": true
-      },
-      "dependsOn": ["compress upx.exe"]
-    },
-    {
-      "label": "compress python311",
-      "type": "shell",
-      "command": "upx",
-      "args": ["--ultra-brute", "./upx.dist/python311.dll"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "new",
-        "close": true
-      },
-      "dependsOn": ["compress libcrypto"]
-    },
-    {
       "label": "build project",
-      "dependsOn": ["compress python311"],
+      "dependsOn": ["compress upx.exe"],
       "presentation": {
         "reveal": "always",
         "panel": "new",
